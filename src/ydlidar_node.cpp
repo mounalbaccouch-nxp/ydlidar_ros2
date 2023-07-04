@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 
   auto node = rclcpp::Node::make_shared("ydlidar_node");
   std::string port = "/dev/ttyUSB0";
-  int baudrate = 230400;
+  int baudrate = 128000;
   std::string frame_id = "laser_frame";
   bool reversion = true;
   bool resolution_fixed = true;
@@ -75,49 +75,49 @@ int main(int argc, char *argv[]) {
   bool m_isToFLidar = false;
   bool m_Inverted = true;
 
-  node->declare_parameter("port");
+  node->declare_parameter<std::string>("port", "/dev/ttyUSB0");
   node->get_parameter("port", port);
 
-  node->declare_parameter("frame_id");
+  node->declare_parameter<std::string>("frame_id", "laser_frame");
   node->get_parameter("frame_id", frame_id);
 
-  node->declare_parameter("ignore_array");
+  node->declare_parameter<std::string>("ignore_array", "");
   node->get_parameter("ignore_array", list);
 
-  node->declare_parameter("baudrate");
+  node->declare_parameter<int>("baudrate", 128000);
   node->get_parameter("baudrate", baudrate);
 
-  node->declare_parameter("samp_rate");
+  node->declare_parameter<int>("samp_rate", 9);
   node->get_parameter("samp_rate", samp_rate);
 
-  node->declare_parameter("resolution_fixed");
+  node->declare_parameter<bool>("resolution_fixed", true);
   node->get_parameter("resolution_fixed", resolution_fixed);
 
-  node->declare_parameter("singleChannel");
+  node->declare_parameter<bool>("singleChannel", false);
   node->get_parameter("singleChannel", m_singleChannel);
 
-  node->declare_parameter("auto_reconnect");
+  node->declare_parameter<bool>("auto_reconnect", true);
   node->get_parameter("auto_reconnect", auto_reconnect);
 
-  node->declare_parameter("reversion");
+  node->declare_parameter<bool>("reversion", true);
   node->get_parameter("reversion", reversion);
 
-  node->declare_parameter("isToFLidar");
+  node->declare_parameter<bool>("isToFLidar", false);
   node->get_parameter("isToFLidar", m_isToFLidar);
 
-  node->declare_parameter("angle_max");
+  node->declare_parameter<double>("angle_max", 180.0);
   node->get_parameter("angle_max", angle_max);
 
-  node->declare_parameter("angle_min");
+  node->declare_parameter<double>("angle_min", -180.0);
   node->get_parameter("angle_min", angle_min);
 
-  node->declare_parameter("max_range");
+  node->declare_parameter<double>("max_range", 16.0);
   node->get_parameter("max_range", max_range);
 
-  node->declare_parameter("min_range");
+  node->declare_parameter<double>("min_range", 0.01);
   node->get_parameter("min_range", min_range);
 
-  node->declare_parameter("frequency");
+  node->declare_parameter<double>("frequency", 10.0);
   node->get_parameter("frequency", frequency);
 
 
